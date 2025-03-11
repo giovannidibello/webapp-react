@@ -11,13 +11,13 @@ export default function MoviePage() {
 
             <div className="d-flex mb-3">
 
-                <img className="book-img"
+                <img className="img-fluid w-25"
 
                     src="http://localhost:3000/img/movies_cover/inception.jpg"
 
                     alt="descrizione img" />
 
-                <div>
+                <div className="ms-3 p-3">
 
                     <h1>Inception</h1>
 

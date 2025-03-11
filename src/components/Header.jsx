@@ -7,8 +7,8 @@ export default function Header() {
 
     return (
 
-        <nav className="navbar bg-body-tertiary mb-4">
-            <div className="container-fluid justify-content-start">
+        <nav className="navbar bg-primary bg-gradient mb-4">
+            <div className="container-fluid justify-content-center">
                 <Link className="navbar-brand" to="/">Bool Movies</Link>
             </div>
         </nav>

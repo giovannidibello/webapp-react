@@ -7,7 +7,7 @@ const MovieCard = () => {
     return (
 
         <div className="card mb-4">
-            <img className="card-img-top"
+            <img className="card-img-top img-fluid w-50 mx-auto d-block mt-3"
 
                 src="http://localhost:3000/img/movies_cover/inception.jpg"
 
