@@ -9,12 +9,15 @@ import { useState, useEffect } from "react"
 // importo il componente Card delle reviews
 import ReviewCard from '../components/ReviewCard';
 
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom"
 
 export default function MoviePage() {
 
     // recupero l'id del film
     const { id } = useParams();
+
+    // utilizzo per il redirect
+    const redirect = useNavigate();
 
     // setto lo stato del componente
     const [movie, setMovie] = useState({});
@@ -29,7 +32,10 @@ export default function MoviePage() {
                     setMovie(res.data)
                 }
             )
-            .catch(err => console.log(err)
+            .catch(err => {
+                console.log(err)
+                if (err.status === 404) redirect("/404")
+            }
             )
     }
 

@@ -9,6 +9,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 // Pages
 import HomePage from "./pages/HomePage"
 import MoviePage from "./pages/MoviePage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 import './App.css'
 
@@ -21,6 +22,7 @@ function App() {
         <Route element={<DefaultLayout />} >
           <Route index path="/" element={<HomePage />} />
           <Route path="movies/:id" element={<MoviePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
