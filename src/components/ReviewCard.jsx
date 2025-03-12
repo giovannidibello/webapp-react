@@ -1,6 +1,8 @@
 // ReviewCard.jsx
 
-const ReviewCard = () => {
+const ReviewCard = (props) => {
+
+    const { name, vote, text } = props.reviewProp;
 
     return (
 
@@ -8,11 +10,11 @@ const ReviewCard = () => {
 
             <div className="card-body">
 
-                <p className="card-text">A mind-bending masterpiece.</p>
+                <p className="card-text">{text}</p>
 
-                <strong>Vote: 5 </strong>
+                <strong>Vote: {vote} </strong>
 
-                <address><i>By Alice</i></address>
+                <address><i>By {name} </i></address>
             </div>
 
         </div>

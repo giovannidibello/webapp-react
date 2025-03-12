@@ -1,52 +1,85 @@
 // MoviePage.jsx
 
+// importo axios
+import axios from 'axios'
+
+// uso di state e effect
+import { useState, useEffect } from "react"
+
+// importo il componente Card delle reviews
 import ReviewCard from '../components/ReviewCard';
 
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 export default function MoviePage() {
 
-    return (<>
-        <header id="book" className="border-bottom border-1 mb-3">
+    // recupero l'id del film
+    const { id } = useParams();
 
-            <div className="d-flex mb-3">
+    // setto lo stato del componente
+    const [movie, setMovie] = useState({});
 
-                <img className="img-fluid w-25"
+    // funzione di chiamata all'API per il film richiesto
+    const fetchMovie = () => {
 
-                    src="http://localhost:3000/img/movies_cover/inception.jpg"
+        axios.get("http://localhost:3000/api/movies/" + id)
 
-                    alt="descrizione img" />
+            .then(
+                res => {
+                    setMovie(res.data)
+                }
+            )
+            .catch(err => console.log(err)
+            )
+    }
 
-                <div className="ms-3 p-3">
+    useEffect(fetchMovie, [])
 
-                    <h1>Inception</h1>
+    // funzione di rendering delle reviews
+    const renderReviews = () => {
+        return movie.reviews?.map(
+            review => <ReviewCard key={review.id} reviewProp={review} />
+        )
+    }
 
-                    <h3 className="text-muted"><i>Christopher Nolan</i></h3>
+    return (
+        <>
+            <header id="book" className="border-bottom border-1 mb-3">
 
-                    <p>A skilled thief is given a chance at redemption if he can successfully perform inception.</p>
+                <div className="d-flex mb-3">
+
+                    <img className="img-fluid w-25"
+
+                        src={movie.image}
+
+                        alt={movie.title} />
+
+                    <div className="ms-3 p-3">
+
+                        <h1>{movie.title}</h1>
+
+                        <h3 className="text-muted"><i>{movie.author}</i></h3>
+
+                        <p>{movie.abstract}</p>
+
+                    </div>
 
                 </div>
-
-            </div>
-        </header>
-        <section id="reviews">
-            <header className="d-flex justify-content-between align-items-center mb-4">
-                <h4>Our community reviews</h4>
             </header>
+            <section id="reviews">
+                <header className="d-flex justify-content-between align-items-center mb-4">
+                    <h4>Our community reviews</h4>
+                </header>
 
-            <ReviewCard />
+                {renderReviews()}
 
-            <ReviewCard />
+            </section>
 
-            <ReviewCard />
+            <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-end">
 
-        </section>
+                <Link className="btn btn-secondary" to="/">Ritorna alla home</Link>
 
-        <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-end">
-
-            <Link className="btn btn-secondary" to="/">Ritorna alla home</Link>
-
-        </footer>
-    </>
+            </footer>
+        </>
     );
 }
