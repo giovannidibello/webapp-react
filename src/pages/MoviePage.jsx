@@ -54,7 +54,7 @@ export default function MoviePage() {
 
                 <div className="d-flex mb-3">
 
-                    {image && <img className="img-fluid w-25" src={movie.image} alt={movie.title} />}
+                    {movie.image && <img className="img-fluid w-25" src={movie.image} alt={movie.title} />}
 
                     <div className="ms-3 p-3">
 
@@ -77,11 +77,11 @@ export default function MoviePage() {
 
             </section>
 
-            <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-end">
+            {/* <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-center">
 
-                <Link className="btn btn-secondary" to="/">Ritorna alla home</Link>
+                <Link className="btn btn-secondary btn-lg px-4 py-2 rounded-pill shadow" to="/">Back to home</Link>
 
-            </footer>
+            </footer> */}
         </>
     );
 }

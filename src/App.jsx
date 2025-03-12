@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Layout
 import DefaultLayout from "./layouts/DefaultLayout";
+import FooterLayout from "./layouts/FooterLayout";
 
 // Pages
 import HomePage from "./pages/HomePage"
@@ -21,9 +22,12 @@ function App() {
       <Routes>
         <Route element={<DefaultLayout />} >
           <Route index path="/" element={<HomePage />} />
+        </Route>
+        <Route element={<FooterLayout />} >
           <Route path="movies/:id" element={<MoviePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
+
       </Routes>
     </BrowserRouter>
 
