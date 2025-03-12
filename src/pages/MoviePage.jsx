@@ -54,11 +54,7 @@ export default function MoviePage() {
 
                 <div className="d-flex mb-3">
 
-                    <img className="img-fluid w-25"
-
-                        src={movie.image}
-
-                        alt={movie.title} />
+                    {image && <img className="img-fluid w-25" src={movie.image} alt={movie.title} />}
 
                     <div className="ms-3 p-3">
 
@@ -66,7 +62,7 @@ export default function MoviePage() {
 
                         <h3 className="text-muted"><i>{movie.author}</i></h3>
 
-                        <p>{movie.abstract}</p>
+                        <p>{movie.abstract || "Abstract not found"}</p>
 
                     </div>
 

@@ -10,7 +10,7 @@ const ReviewCard = (props) => {
 
             <div className="card-body">
 
-                <p className="card-text">{text}</p>
+                <p className="card-text">{text || "Text not found"}</p>
 
                 <strong>Vote: {vote} </strong>
 
