@@ -2,26 +2,28 @@
 
 import { Link } from "react-router-dom"
 
-const MovieCard = () => {
+const MovieCard = (props) => {
+
+    const { id, title, author, abstract, image } = props.movieProp;
 
     return (
 
         <div className="card mb-4">
             <img className="card-img-top img-fluid w-50 mx-auto d-block mt-3"
 
-                src="http://localhost:3000/img/movies_cover/inception.jpg"
+                src={image}
 
-                alt="descrizione img" />
+                alt={title} />
 
             <div className="card-body">
 
-                <h5 className="card-title">Inception</h5>
+                <h5 className="card-title">{title}</h5>
 
-                <address><i>Christopher Nolan</i></address>
+                <address><i>{author}</i></address>
 
-                <p className="card-text">A skilled thief is given a chance at redemption if he can successfully perform inception.</p>
+                <p className="card-text">{abstract}</p>
 
-                <Link to="/movies" className="btn btn-primary">Maggiori dettagli</Link>
+                <Link to={`/movies/${id}`} className="btn btn-primary">Maggiori dettagli</Link>
             </div>
         </div>
     )
