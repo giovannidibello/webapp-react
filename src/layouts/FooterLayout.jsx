@@ -10,11 +10,13 @@ export default function FooterLayout() {
 
     return (
         <>
-            <Header />
-            <main className="container">
-                <Outlet />
-                <Footer />
-            </main>
+            <div className="app-bg">
+                <Header />
+                <main className="container">
+                    <Outlet />
+                    <Footer />
+                </main>
+            </div>
 
         </>
     );

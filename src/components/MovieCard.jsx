@@ -8,21 +8,21 @@ const MovieCard = (props) => {
 
     return (
 
-        <div className="card mb-4" style={{ width: "20rem" }}>
-            {image && <img className="card-img-top img-fluid w-50 mx-auto d-block mt-3" src={image} alt={title} />}
+        <div className="movie-card-container">
+            <div className="card mb-2 d-flex flex-column h-100 text-center movie-card" style={{ width: "16rem", flex: "0 0 auto" }}>
+                {image && <img className="card-img-top img-fluid mx-auto d-block" src={image} alt={title} style={{ height: "300px" }} />}
 
-            <div className="card-body">
+                <div className="card-body text-center">
 
-                <h5 className="card-title">{title}</h5>
+                    <h5 className="card-title">{title}</h5>
 
-                <address><i>{director || "Anonymous"}</i></address>
+                    <address><i>{director || "Anonymous"}</i></address>
 
-                <p className="card-text">{abstract || "Abstract not found"}</p>
-
-                <div className="d-flex justify-content-center mt-auto">
-                    <Link to={`/movies/${id}`} className="btn btn-primary px-4 py-2 rounded-pill shadow">
-                        See More
-                    </Link>
+                    <div className="d-flex justify-content-center mt-auto">
+                        <Link to={`/movies/${id}`} className="btn btn-primary btn-sm px-4 py-2 rounded-pill shadow">
+                            See More
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

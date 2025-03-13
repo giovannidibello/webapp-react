@@ -9,11 +9,12 @@ export default function DefaultLayout() {
 
     return (
         <>
-            <Header />
-            <main className="container">
-                <Outlet />
-            </main>
-
+            <div className="app-bg">
+                <Header />
+                <main className="container">
+                    <Outlet />
+                </main>
+            </div>
         </>
     );
 }

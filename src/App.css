@@ -1,0 +1,48 @@
+/* BODY */
+
+.app-bg {
+    background: linear-gradient(135deg, #b3d4fc, #d8b3fc);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+
+.navbar {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* CARD */
+
+.movie-cards-wrapper {
+    display: flex;
+    gap: 1rem;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+}
+
+.movie-card-container {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.movie-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: center;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
