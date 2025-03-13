@@ -9,6 +9,9 @@ import { useState, useEffect } from "react"
 // importo il componente Card delle reviews
 import ReviewCard from '../components/ReviewCard';
 
+// import del componente di form
+import ReviewForm from '../components/ReviewForm';
+
 import { Link, useParams, useNavigate } from "react-router-dom"
 
 export default function MoviePage() {
@@ -77,11 +80,12 @@ export default function MoviePage() {
 
             </section>
 
-            {/* <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-center">
+            <section>
 
-                <Link className="btn btn-secondary btn-lg px-4 py-2 rounded-pill shadow" to="/">Back to home</Link>
+                <ReviewForm movie_id={movie.id} realoadReviews={fetchMovie} />
 
-            </footer> */}
+            </section>
+
         </>
     );
 }
