@@ -15,6 +15,9 @@ import ReviewForm from '../components/ReviewForm';
 // import del componente render stelle
 import RenderStars from '../components/RenderStars';
 
+// importo il loader
+import Loader from '../components/Loader';
+
 import { Link, useParams, useNavigate } from "react-router-dom"
 
 export default function MoviePage() {
@@ -28,14 +31,20 @@ export default function MoviePage() {
     // setto lo stato del componente
     const [movie, setMovie] = useState({});
 
+    // stato per determinare se i dati sono in caricamento
+    const [loading, setLoading] = useState(true);
+
+
     // funzione di chiamata all'API per il film richiesto
     const fetchMovie = () => {
 
+        setLoading(true);
         axios.get("http://localhost:3000/api/movies/" + id)
 
             .then(
                 res => {
                     setMovie(res.data)
+                    setLoading(false);
                 }
             )
             .catch(err => {
@@ -64,91 +73,39 @@ export default function MoviePage() {
         return (totalVotes / movie.reviews.length).toFixed();
     };
 
-    // // funzione per mostrare le stelle in base al voto
-    // const renderStars = (average) => {
-
-    //     let stars = [];
-
-    //     // trasformo la media in un numero intero (assumendo che l'average sia un numero tra 0 e 5)
-    //     const fullStars = Math.floor(average);
-    //     const halfStar = average % 1 !== 0;
-
-    //     for (let i = 0; i < 5; i++) {
-    //         if (i < fullStars) {
-    //             // aggiungo stella piena
-    //             stars.push(
-    //                 <FontAwesomeIcon
-    //                     key={i}
-    //                     icon={faStar}
-    //                     style={{ color: "#FFD43B" }}
-    //                 />
-    //             );
-    //         } else if (i === fullStars && halfStar) {
-    //             // aggiungo mezza stella
-    //             stars.push(
-    //                 <FontAwesomeIcon
-    //                     key={i}
-    //                     icon={faStarHalfAlt}
-    //                     style={{ color: "#FFD43B" }}
-    //                 />
-    //             );
-    //         } else {
-
-    //             // aggiungo stella vuota
-    //             stars.push(
-    //                 <FontAwesomeIcon
-    //                     key={i}
-    //                     icon={faStar}
-    //                     style={{ color: "#ccc" }}
-    //                 />
-    //             );
-    //         }
-    //     }
-
-    //     return stars;
-    // };
-
     return (
         <>
-            <header className="border-bottom border-1 mb-3">
 
-                <div className="d-flex mb-3">
-
-                    {movie.image && <img className="img-fluid" src={movie.image} alt={movie.title} style={{ width: "16rem", height: "22rem", flex: "0 0 auto" }} />}
-
-                    <div className="ms-4">
-
-                        <h1>{movie.title}</h1>
-
-                        <h3><i>{movie.author}</i></h3>
-
-                        <p>{movie.abstract || "Abstract not found"}</p>
-
-                        <section>
-                            <header className="mt-5 mb-4 text-center">
-                                <h4>Our community reviews</h4>
-                                <div className="text-end">
-                                    <h6>Average Rating: <RenderStars average={calculateAverageRating()} /></h6>
-                                </div>
-                            </header>
-
-                            <div className="d-flex flex-wrap">
-                                {renderReviews()}
+            {loading ? (
+                <Loader />
+            ) : (
+                <>
+                    <header className="border-bottom border-1 mb-3">
+                        <div className="d-flex mb-3">
+                            {movie.image && <img className="img-fluid" src={movie.image} alt={movie.title} style={{ width: "16rem", height: "22rem", flex: "0 0 auto" }} />}
+                            <div className="ms-4">
+                                <h1>{movie.title}</h1>
+                                <h3><i>{movie.author}</i></h3>
+                                <p>{movie.abstract || "Abstract not found"}</p>
+                                <section>
+                                    <header className="mt-5 mb-4 text-center">
+                                        <h4>Our community reviews</h4>
+                                        <div className="text-end">
+                                            <h6>Average Rating: <RenderStars average={calculateAverageRating()} /></h6>
+                                        </div>
+                                    </header>
+                                    <div className="d-flex flex-wrap">
+                                        {renderReviews()}
+                                    </div>
+                                </section>
                             </div>
-                        </section>
-
-                    </div>
-
-                </div>
-            </header>
-
-
-            <section>
-
-                <ReviewForm movie_id={movie.id} realoadReviews={fetchMovie} />
-
-            </section>
-
+                        </div>
+                    </header>
+                    <section>
+                        <ReviewForm movie_id={movie.id} realoadReviews={fetchMovie} />
+                    </section>
+                </>
+            )}
         </>
     );
 }
