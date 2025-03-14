@@ -11,6 +11,7 @@ import FooterLayout from "./layouts/FooterLayout";
 import HomePage from "./pages/HomePage"
 import MoviePage from "./pages/MoviePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import CreateMoviePage from './pages/CreateMoviePage';
 
 import './App.css'
 
@@ -25,6 +26,7 @@ function App() {
         </Route>
         <Route element={<FooterLayout />} >
           <Route path="movies/:id" element={<MoviePage />} />
+          <Route path="movies/create" element={<CreateMoviePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 
