@@ -12,11 +12,10 @@ import ReviewCard from '../components/ReviewCard';
 // import del componente di form
 import ReviewForm from '../components/ReviewForm';
 
-import { Link, useParams, useNavigate } from "react-router-dom"
+// import del componente render stelle
+import RenderStars from '../components/RenderStars';
 
-// importo fontawesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Link, useParams, useNavigate } from "react-router-dom"
 
 export default function MoviePage() {
 
@@ -51,7 +50,7 @@ export default function MoviePage() {
     // funzione di rendering delle reviews
     const renderReviews = () => {
         return movie.reviews?.map(
-            review => <ReviewCard key={review.id} reviewProp={review} renderStars={renderStars} />
+            review => <ReviewCard key={review.id} reviewProp={review} />
         )
     }
 
@@ -65,49 +64,49 @@ export default function MoviePage() {
         return (totalVotes / movie.reviews.length).toFixed();
     };
 
-    // funzione per mostrare le stelle in base al voto
-    const renderStars = (average) => {
+    // // funzione per mostrare le stelle in base al voto
+    // const renderStars = (average) => {
 
-        let stars = [];
+    //     let stars = [];
 
-        // trasformo la media in un numero intero (assumendo che l'average sia un numero tra 0 e 5)
-        const fullStars = Math.floor(average);
-        const halfStar = average % 1 !== 0;
+    //     // trasformo la media in un numero intero (assumendo che l'average sia un numero tra 0 e 5)
+    //     const fullStars = Math.floor(average);
+    //     const halfStar = average % 1 !== 0;
 
-        for (let i = 0; i < 5; i++) {
-            if (i < fullStars) {
-                // aggiungo stella piena
-                stars.push(
-                    <FontAwesomeIcon
-                        key={i}
-                        icon={faStar}
-                        style={{ color: "#FFD43B" }}
-                    />
-                );
-            } else if (i === fullStars && halfStar) {
-                // aggiungo mezza stella
-                stars.push(
-                    <FontAwesomeIcon
-                        key={i}
-                        icon={faStarHalfAlt}
-                        style={{ color: "#FFD43B" }}
-                    />
-                );
-            } else {
+    //     for (let i = 0; i < 5; i++) {
+    //         if (i < fullStars) {
+    //             // aggiungo stella piena
+    //             stars.push(
+    //                 <FontAwesomeIcon
+    //                     key={i}
+    //                     icon={faStar}
+    //                     style={{ color: "#FFD43B" }}
+    //                 />
+    //             );
+    //         } else if (i === fullStars && halfStar) {
+    //             // aggiungo mezza stella
+    //             stars.push(
+    //                 <FontAwesomeIcon
+    //                     key={i}
+    //                     icon={faStarHalfAlt}
+    //                     style={{ color: "#FFD43B" }}
+    //                 />
+    //             );
+    //         } else {
 
-                // aggiungo stella vuota
-                stars.push(
-                    <FontAwesomeIcon
-                        key={i}
-                        icon={faStar}
-                        style={{ color: "#ccc" }}
-                    />
-                );
-            }
-        }
+    //             // aggiungo stella vuota
+    //             stars.push(
+    //                 <FontAwesomeIcon
+    //                     key={i}
+    //                     icon={faStar}
+    //                     style={{ color: "#ccc" }}
+    //                 />
+    //             );
+    //         }
+    //     }
 
-        return stars;
-    };
+    //     return stars;
+    // };
 
     return (
         <>
@@ -129,7 +128,7 @@ export default function MoviePage() {
                             <header className="mt-5 mb-4 text-center">
                                 <h4>Our community reviews</h4>
                                 <div className="text-end">
-                                    <h6>Average Rating: {renderStars(calculateAverageRating())}</h6>
+                                    <h6>Average Rating: <RenderStars average={calculateAverageRating()} /></h6>
                                 </div>
                             </header>
 

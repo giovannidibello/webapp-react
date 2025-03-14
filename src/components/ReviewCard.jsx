@@ -1,10 +1,11 @@
 // ReviewCard.jsx
 
+// import del componente render stelle
+import RenderStars from '../components/RenderStars';
+
 const ReviewCard = (props) => {
 
     const { name, vote, text } = props.reviewProp;
-    const { renderStars } = props;
-
 
     return (
 
@@ -14,7 +15,7 @@ const ReviewCard = (props) => {
 
                 <p className="card-text">{text || "Text not found"}</p>
 
-                <strong>Vote: {renderStars(vote)} </strong>
+                <strong>Vote: <RenderStars average={vote} /> </strong>
 
                 <address><i>By {name} </i></address>
             </div>
